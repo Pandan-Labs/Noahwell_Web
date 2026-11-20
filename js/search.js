@@ -161,7 +161,7 @@
               <div class="search-result-info">
                 <span class="search-result-cat">${p.subcategory || p.category}</span>
                 <h4 class="search-result-title">${escapeHtml(p.name)}</h4>
-                <span class="search-result-price">$${p.price.toFixed(2)}</span>
+                <span class="search-result-price">${window.formatPrice ? window.formatPrice(p.price) : 'LKR ' + p.price.toFixed(2)}</span>
               </div>
             </div>
           `).join('')}

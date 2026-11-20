@@ -91,13 +91,13 @@
     });
 
     // Bind Price Range slider
-    const priceRange = document.getElementById('price-range') || document.querySelector('.price-slider input');
+    const priceRange = document.getElementById('price-range') || document.getElementById('price-max') || document.querySelector('.price-slider');
     const priceDisplay = document.getElementById('price-val') || document.getElementById('price-max-display') || document.querySelector('.price-value');
     if (priceRange) {
       priceRange.addEventListener('input', function () {
         maxPrice = parseFloat(this.value);
         if (priceDisplay) {
-          priceDisplay.textContent = `$${maxPrice}`;
+          priceDisplay.textContent = `LKR ${maxPrice}`;
         }
         visibleCount = 12;
         applyFilters();
@@ -175,7 +175,7 @@
 
       if (priceRange) {
         priceRange.value = 500;
-        if (priceDisplay) priceDisplay.textContent = '$500';
+        if (priceDisplay) priceDisplay.textContent = 'LKR 500';
       }
 
       if (sortSelect) sortSelect.value = 'featured';

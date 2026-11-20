@@ -683,9 +683,9 @@
 
 .countdown {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  gap: var(--space-xl);
+  gap: var(--space-lg);
 }
 
 .time-unit {
@@ -693,6 +693,7 @@
   flex-direction: column;
   align-items: center;
   gap: var(--space-xs);
+  min-width: 55px;
 }
 
 .time-unit span {
@@ -715,14 +716,17 @@
 }
 
 /* Timer separators */
-.countdown .time-unit:not(:last-child)::after {
-  content: ':';
+.countdown-separator {
   font-family: var(--font-heading);
-  font-size: 2rem;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 300;
   color: var(--color-taupe);
-  position: relative;
-  top: -0.2em;
-  margin-left: var(--space-xl);
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: clamp(2.5rem, 5vw, 4rem);
+  user-select: none;
 }
 
 /* ============================================================
@@ -1043,11 +1047,16 @@
   }
 
   .countdown {
-    gap: var(--space-lg);
+    gap: var(--space-md);
   }
 
-  .countdown .time-unit:not(:last-child)::after {
-    margin-left: var(--space-lg);
+  .time-unit {
+    min-width: 48px;
+  }
+
+  .countdown-separator {
+    font-size: 1.8rem;
+    height: clamp(2rem, 4vw, 3rem);
   }
 
   .sort-bar {
@@ -1074,7 +1083,25 @@
     height: auto;
   }
 
+  .countdown {
+    gap: 0.35rem;
+  }
+
+  .time-unit {
+    min-width: 38px;
+  }
+
   .time-unit span {
-    font-size: 2rem;
+    font-size: 1.6rem;
+  }
+
+  .time-unit small {
+    font-size: 0.55rem;
+    letter-spacing: 0.12em;
+  }
+
+  .countdown-separator {
+    font-size: 1.25rem;
+    height: 1.6rem;
   }
 }

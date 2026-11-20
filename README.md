@@ -73,10 +73,10 @@ noahvelle/
 1. **Hero Carousel**: Multi-slide transition on the homepage with autoplay, previous/next arrows, and dot indicators.
 2. **Dynamic Product Rendering**: Centralized product database in `js/products.js` with 20 curated luxury pieces across dresses, tops, bottoms, jackets, shoes, and accessories.
 3. **Product Quick View Modal**: Inspect any piece from any page with size selection, color swatches, quantity controls, add to bag, and wishlist toggling.
-4. **Persistent Shopping Bag**: Stored in browser `localStorage`. Real-time count badges, item removal, quantity adjustment, free shipping calculation (orders over $150), and active promo codes (`NOAHVELLE10`, `WELCOME20`).
+4. **Persistent Shopping Bag**: Stored in browser `localStorage`. Real-time count badges, item removal, quantity adjustment, free shipping calculation (orders over LKR 150), and active promo codes (`NOAHVELLE10`, `WELCOME20`).
 5. **Persistent Wishlist**: One-click heart toggling with visual state synchronization across cards and the Account dashboard.
 6. **Real-Time Search Overlay**: Instant filtering by product name, category, or description with popular search tag suggestions.
-7. **Shop Catalog Filtering & Sorting**: Filter by category, clothing size (XS–XXL), color palette, price range ($0–$500), in-stock availability, and customer rating. Sort by Featured, Newest, Price (Low/High), and Best Selling.
+7. **Shop Catalog Filtering & Sorting**: Filter by category, clothing size (XS–XXL), color palette, price range (LKR 0–LKR 500), in-stock availability, and customer rating. Sort by Featured, Newest, Price (Low/High), and Best Selling.
 8. **Offers Page Countdown**: Live 3-day sale countdown timer with persistent expiration timestamp.
 9. **Authentication & Form Validation**: Client-side validation with inline error feedback, password visibility eye toggles, password strength meter, and seamless redirect to the account dashboard.
 10. **Toast Notification System**: Global `window.showToast(message, type)` notification toasts for feedback on bag updates, wishlist actions, newsletter subscriptions, and login events.

@@ -489,6 +489,13 @@
     return stars;
   }
 
+  // Currency formatting helper
+  const formatPrice = window.formatPrice || function (amount) {
+    const num = Number(amount) || 0;
+    return `LKR ${num.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+  };
+  if (!window.formatPrice) window.formatPrice = formatPrice;
+
   // Generate HTML string for single product card
   window.renderProductCard = function (product, isSlider = false) {
     const isWish = window.isWishlisted ? window.isWishlisted(product.id) : false;
@@ -499,9 +506,9 @@
       : '';
 
     const priceHtml = product.isOnSale
-      ? `<span class="product-price-current">$${product.price.toFixed(2)}</span>
-         <span class="product-price-old">$${product.oldPrice.toFixed(2)}</span>`
-      : `<span class="product-price-current">$${product.price.toFixed(2)}</span>`;
+      ? `<span class="product-price-current">${formatPrice(product.price)}</span>
+         <span class="product-price-old">${formatPrice(product.oldPrice)}</span>`
+      : `<span class="product-price-current">${formatPrice(product.price)}</span>`;
 
     const cardClass = isSlider ? 'product-card slider-item' : 'product-card';
 

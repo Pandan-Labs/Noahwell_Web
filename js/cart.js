@@ -176,13 +176,13 @@
               <p class="cart-item-meta">Size: <strong>${item.size}</strong> &nbsp;|&nbsp; Color: <strong>${item.color}</strong></p>
             </div>
             <div class="cart-item-price-col">
-              <p class="cart-item-price">$${item.price.toFixed(2)}</p>
+              <p class="cart-item-price">${window.formatPrice ? window.formatPrice(item.price) : 'LKR ' + item.price.toFixed(2)}</p>
               <div class="quantity-control">
                 <button class="qty-btn qty-minus" onclick="window.updateCartQuantity(${idx}, -1)" aria-label="Decrease quantity">−</button>
                 <span class="qty-value">${item.quantity}</span>
                 <button class="qty-btn qty-plus" onclick="window.updateCartQuantity(${idx}, 1)" aria-label="Increase quantity">+</button>
               </div>
-              <p class="cart-item-subtotal">$${(item.price * item.quantity).toFixed(2)}</p>
+              <p class="cart-item-subtotal">${window.formatPrice ? window.formatPrice(item.price * item.quantity) : 'LKR ' + (item.price * item.quantity).toFixed(2)}</p>
               <button class="remove-item" onclick="window.removeFromCart(${idx})" aria-label="Remove item" title="Remove">✕</button>
             </div>
           </div>
@@ -191,25 +191,26 @@
     }
 
     // Update Summary fields
+    const format = window.formatPrice || (val => `LKR ${Number(val).toFixed(2)}`);
     const subtotalEl = document.getElementById('summary-subtotal');
-    if (subtotalEl) subtotalEl.textContent = `$${subtotal.toFixed(2)}`;
+    if (subtotalEl) subtotalEl.textContent = format(subtotal);
 
     const shippingEl = document.getElementById('summary-shipping');
-    if (shippingEl) shippingEl.textContent = shipping === 0 ? 'FREE' : `$${shipping.toFixed(2)}`;
+    if (shippingEl) shippingEl.textContent = shipping === 0 ? 'FREE' : format(shipping);
 
     const discountRow = document.getElementById('discount-row');
     const discountEl = document.getElementById('summary-discount');
     if (discountRow && discountEl) {
       if (discountAmount > 0) {
         discountRow.style.display = 'flex';
-        discountEl.textContent = `-$${discountAmount.toFixed(2)} (${Math.round(discountRate * 100)}% off)`;
+        discountEl.textContent = `-${format(discountAmount)} (${Math.round(discountRate * 100)}% off)`;
       } else {
         discountRow.style.display = 'none';
       }
     }
 
     const totalEl = document.getElementById('summary-total');
-    if (totalEl) totalEl.textContent = `$${total.toFixed(2)}`;
+    if (totalEl) totalEl.textContent = format(total);
   }
   window.renderCartPage = renderCartPage;
 

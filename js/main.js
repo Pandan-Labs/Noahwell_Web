@@ -7,13 +7,20 @@
   'use strict';
 
   /* ─────────────────────────────────────────────
-     Constants
+     Constants & Global Currency Configuration
   ───────────────────────────────────────────── */
   const CART_KEY      = 'noahvelle_cart';
   const WISHLIST_KEY  = 'noahvelle_wishlist';
   const SCROLL_CLASS  = 'scrolled';
   const MENU_CLASS    = 'open';
   const TOAST_DURATION = 3500; // ms
+
+  window.CURRENCY_CODE = 'LKR';
+  window.CURRENCY_SYMBOL = 'LKR ';
+  window.formatPrice = function (amount) {
+    const num = Number(amount) || 0;
+    return `LKR ${num.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+  };
 
   /* ─────────────────────────────────────────────
      Helpers
@@ -392,11 +399,12 @@
     let qty = 1;
 
     const isWish = window.isWishlisted ? window.isWishlisted(product.id) : false;
+    const format = window.formatPrice || (val => `LKR ${Number(val).toFixed(2)}`);
     const priceHtml = product.isOnSale
-      ? `<span class="qv-price-current">$${product.price.toFixed(2)}</span>
-         <span class="qv-price-old">$${product.oldPrice.toFixed(2)}</span>
+      ? `<span class="qv-price-current">${format(product.price)}</span>
+         <span class="qv-price-old">${format(product.oldPrice)}</span>
          <span class="badge badge-sale">-${product.discountPercent}% OFF</span>`
-      : `<span class="qv-price-current">$${product.price.toFixed(2)}</span>`;
+      : `<span class="qv-price-current">${format(product.price)}</span>`;
 
     content.innerHTML = `
       <div class="qv-grid">
@@ -452,7 +460,7 @@
           </div>
 
           <div class="qv-perks">
-            <span>✨ Complimentary shipping on orders over $150</span>
+            <span>✨ Complimentary shipping on orders over LKR 150</span>
             <span>🌿 Consciously crafted from sustainable materials</span>
           </div>
         </div>
